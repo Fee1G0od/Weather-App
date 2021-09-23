@@ -7,7 +7,7 @@ const api = {
 function App() {
   const[query, setQuery] = useState('');
   const[weather, setWeather] = useState('');
-
+  let weatherId;
   const search = evt => {
     if (evt.key === "Enter"){
       fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
@@ -28,17 +28,29 @@ function App() {
     let date = d.getDate();
     let month = months[d.getMonth()];
     let year = d.getFullYear();
+    
     return `${day} ${date} ${month} ${year}`
-  
   }
 
 
   return (
-    <div className={(typeof weather.main != "undefined")
-    ? ((weather.main.temp > 16) 
-    ? 'app warm' 
-    : 'app')
-    : 'app'}>
+    <div className={ (typeof weather.main != "undefined")
+      ?(
+         (typeof(weatherId = weather.weather[0].main) != 'undefined' )
+
+         ? (`app + ${weatherId.toLowerCase(weatherId)} `)
+         :'app'
+         //((weather.main.temp > 0)?weatherId == 'Clear' : "app") 
+         //? 'app' 
+         //: 'app'
+      )
+    
+
+    : 'app drizzle'
+    
+    }>
+      
+      
       <main>
         <div className="search-box">
           <input 
@@ -65,8 +77,9 @@ function App() {
               </div>
         ) : ('')}
       </main>
+      
     </div>
+    
   );
 }
-
 export default App;

@@ -15,8 +15,14 @@ body{
   transition: 0.4 ease;
 }
 
-.app.warm{
+.app.clear{
   background-image: url(./assets/warm-bg.jpg);
+}
+.app.clouds{
+  background-image: url(./assets/drizzle.jpg);
+}
+.app.rain{
+  background-image: url(./assets/rain-bg.jpg);
 }
 
 main{
